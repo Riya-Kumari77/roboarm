@@ -9,11 +9,4 @@ A Python-based project designed to control and manipulate a robotic arm.
 
 ---
 
-## Installation
 
-Get the project up and running on your local machine:
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Riya-Kumari77/roboarm.git](https://github.com/Riya-Kumari77/roboarm.git)
-   cd roboarm
