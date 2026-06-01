@@ -21,7 +21,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         parameters=[{
             'robot_description': robot_desc,
-            'use_sim_time': True
+            'use_sim_time': False
         }]
     )
 
@@ -43,8 +43,25 @@ def generate_launch_description():
             package='roboarm',
             executable='arm_controller',
             output='screen',
-            parameters=[{'use_sim_time': True}]
+            parameters=[{'use_sim_time': False}]
         )]
     )
 
-    return LaunchDescription([gazebo, rsp, spawn, controller])
+    gz_bridge = TimerAction(
+        period=3.0,
+        actions=[Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            arguments=[
+                '/model/roboarm/joint/base_joint/cmd_pos'
+                '@std_msgs/msg/Float64]gz.msgs.Double',
+                '/model/roboarm/joint/shoulder_joint/cmd_pos'
+                '@std_msgs/msg/Float64]gz.msgs.Double',
+                '/model/roboarm/joint/elbow_joint/cmd_pos'
+                '@std_msgs/msg/Float64]gz.msgs.Double',
+            ],
+            output='screen'
+        )]
+    )
+
+    return LaunchDescription([gazebo, rsp, spawn, gz_bridge, controller])

@@ -1,0 +1,21 @@
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ROS 2 / colcon workspace outputs
+build/
+install/
+log/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local tool/session metadata
+.codex/
+.agents/
+
+# ROS graph/debug exports
+frames_*.gv
+frames_*.pdf
